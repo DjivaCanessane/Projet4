@@ -13,6 +13,8 @@
 		327BBBA9242DB2F200CA4F95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 327BBBA7242DB2F200CA4F95 /* Main.storyboard */; };
 		327BBBAB242DB2F500CA4F95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 327BBBAA242DB2F500CA4F95 /* Assets.xcassets */; };
 		327BBBAE242DB2F500CA4F95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 327BBBAC242DB2F500CA4F95 /* LaunchScreen.storyboard */; };
+		327BBBB6242DB65100CA4F95 /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 327BBBB5242DB65100CA4F95 /* ThirstySoftRegular.otf */; };
+		327BBBB8242DB65A00CA4F95 /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 327BBBB7242DB65A00CA4F95 /* Delm-Medium.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		327BBBAA242DB2F500CA4F95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		327BBBAD242DB2F500CA4F95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		327BBBAF242DB2F500CA4F95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		327BBBB5242DB65100CA4F95 /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ThirstySoftRegular.otf; sourceTree = "<group>"; };
+		327BBBB7242DB65A00CA4F95 /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Delm-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				327BBBA3242DB2F200CA4F95 /* SceneDelegate.swift */,
 				327BBBA5242DB2F200CA4F95 /* ViewController.swift */,
 				327BBBA7242DB2F200CA4F95 /* Main.storyboard */,
+				327BBBB5242DB65100CA4F95 /* ThirstySoftRegular.otf */,
+				327BBBB7242DB65A00CA4F95 /* Delm-Medium.otf */,
 				327BBBAA242DB2F500CA4F95 /* Assets.xcassets */,
 				327BBBAC242DB2F500CA4F95 /* LaunchScreen.storyboard */,
 				327BBBAF242DB2F500CA4F95 /* Info.plist */,
@@ -126,7 +132,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				327BBBAE242DB2F500CA4F95 /* LaunchScreen.storyboard in Resources */,
+				327BBBB8242DB65A00CA4F95 /* Delm-Medium.otf in Resources */,
 				327BBBAB242DB2F500CA4F95 /* Assets.xcassets in Resources */,
+				327BBBB6242DB65100CA4F95 /* ThirstySoftRegular.otf in Resources */,
 				327BBBA9242DB2F200CA4F95 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -293,7 +301,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fr.canessaneDjiva.Instagrid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -310,7 +318,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = fr.canessaneDjiva.Instagrid;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
