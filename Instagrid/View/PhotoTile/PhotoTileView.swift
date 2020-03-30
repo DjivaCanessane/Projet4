@@ -8,6 +8,7 @@
 
 import UIKit
 
-class PhotoTileView: UIImageView {
+class PhotoTileView: UIView {
+    
     
 }

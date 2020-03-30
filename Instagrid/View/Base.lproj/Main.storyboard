@@ -143,6 +143,7 @@
                         <outlet property="buttonLayout1" destination="BvX-Ja-mWY" id="FGK-cZ-EPo"/>
                         <outlet property="buttonLayout2" destination="wnq-wE-Odr" id="gsd-uJ-tI0"/>
                         <outlet property="buttonLayout3" destination="0kF-8w-7nZ" id="XpR-oI-vDB"/>
+                        <outlet property="mainLayout" destination="hbX-ll-nm2" id="UhD-k5-gZG"/>
                         <outlet property="topRow" destination="8Ev-s2-ePb" id="aIs-m4-3tG"/>
                     </connections>
                 </viewController>
