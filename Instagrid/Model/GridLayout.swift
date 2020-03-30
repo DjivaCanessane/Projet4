@@ -10,4 +10,13 @@ import Foundation
 
 class GridLayout {
     
+    var photoCountTopRow: Int
+    var photoCountBottomRow: Int
+    var isFilled: Bool = false
+    
+    init(photoCountTopRow: Int, photoCountBottomRow: Int) {
+        self.photoCountTopRow = photoCountTopRow
+        self.photoCountBottomRow = photoCountBottomRow
+    }
+      
 }
