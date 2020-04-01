@@ -19,12 +19,12 @@ class ViewController: UIViewController {
     
     @IBAction func buttonActionLayoutTapped(_ sender: UIButton) {
         print(#function)
-        disableBackgroundImageOtherButtons()
+        disableBackgroundImageBottomButtons()
         updateBackgroundImageForButton(sender)
         updateMainLayout(sender)
     }
     
-    func disableBackgroundImageOtherButtons() {
+    func disableBackgroundImageBottomButtons() {
         buttonLayout1.setBackgroundImage(nil, for: .normal)
         buttonLayout2.setBackgroundImage(nil, for: .normal)
         buttonLayout3.setBackgroundImage(nil, for: .normal)
@@ -59,61 +59,60 @@ class ViewController: UIViewController {
     }
     
     func setRows(_ sender: UIButton) {
-        
+        let buttons: [UIButton]
         if sender == buttonLayout1 {
-            let view1 = UIView()
-            view1.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
-            let view2 = UIView()
-            view2.backgroundColor = #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1)
-            let view3 = UIView()
-            view3.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
-            topRow.addArrangedSubview(view1)
-            bottomRow.addArrangedSubview(view2)
-            bottomRow.addArrangedSubview(view3)
+            buttons = makeAddButton(count: 3)
+            topRow.addArrangedSubview(buttons[0])
+            bottomRow.addArrangedSubview(buttons[1])
+            bottomRow.addArrangedSubview(buttons[2])
             return
         }
         else if sender == buttonLayout2 {
-            let view1 = UIView()
-            view1.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
-            let view2 = UIView()
-            view2.backgroundColor = #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1)
-            let view3 = UIView()
-            view3.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-            topRow.addArrangedSubview(view1)
-            topRow.addArrangedSubview(view2)
-            bottomRow.addArrangedSubview(view3)
+            buttons = makeAddButton(count: 3)
+            topRow.addArrangedSubview(buttons[0])
+            topRow.addArrangedSubview(buttons[1])
+            bottomRow.addArrangedSubview(buttons[2])
             return
         }
         else if sender == buttonLayout3 {
-            let view1 = UIView()
-            view1.backgroundColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
-            let view2 = UIView()
-            view2.backgroundColor = #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1)
-            let view3 = UIView()
-            view3.backgroundColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-            let view4 = UIView()
-            view4.backgroundColor = #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)
-            topRow.addArrangedSubview(view1)
-            topRow.addArrangedSubview(view2)
-            bottomRow.addArrangedSubview(view3)
-            bottomRow.addArrangedSubview(view4)
+            buttons = makeAddButton(count: 4)
+            topRow.addArrangedSubview(buttons[0])
+            topRow.addArrangedSubview(buttons[1])
+            bottomRow.addArrangedSubview(buttons[2])
+            bottomRow.addArrangedSubview(buttons[3])
             return
         }
+    }
+    
+    @objc func addPhotoFromLibrary(sender: UIButton) {
+        
+    }
+    
+    func makeAddButton(count: Int) ->[UIButton] {
+        var buttons: [UIButton] = []
+        for _ in 1...count {
+            let button = UIButton()
+            button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            button.setBackgroundImage(UIImage(named: "Plus"), for: .normal)
+            button.addTarget(self, action: #selector(addPhotoFromLibrary(sender:)), for: .touchUpInside)
+            buttons.append(button)
+        }
+        return buttons
     }
     
     func resetRows() {
         
         for view in topRow.subviews {
-            topRow.removeArrangedSubview(view)
+            view.removeFromSuperview()
+            
         }
         
         for view in bottomRow.subviews {
-            bottomRow.removeArrangedSubview(view)
+            view.removeFromSuperview()
         }
     }
     
     override func viewDidLoad() {
-        print(#function)
         super.viewDidLoad()
         
         // Select initialy the first button
