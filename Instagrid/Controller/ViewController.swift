@@ -12,12 +12,33 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     var buttonBuffer: UIButton = UIButton()
 
+    @IBOutlet var rootView: UIView!
     @IBOutlet weak var buttonLayout1: UIButton!
     @IBOutlet weak var buttonLayout2: UIButton!
     @IBOutlet weak var buttonLayout3: UIButton!
     @IBOutlet weak var topRow: UIStackView!
     @IBOutlet weak var bottomRow: UIStackView!
-    @IBOutlet weak var mainLayout: UIView!
+    @IBOutlet weak var mainView: UIView!
+    
+    @objc func onSwipe(_ sender: UISwipeGestureRecognizer) {
+        if sender.state == .ended {
+            animateMainView()
+        }
+    }
+    
+    func animateMainView() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.mainView.transform = CGAffineTransform(translationX: 0, y: -UIScreen.main.bounds.height)
+        }, completion: { (isSwipped) in
+            if isSwipped {
+                //TODO: partager
+                UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: {
+                    self.mainView.transform = .identity
+                }, completion: nil)
+            }
+            
+        })
+    }
     
     @IBAction func buttonActionLayoutTapped(_ sender: UIButton) {
         print(#function)
@@ -42,8 +63,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func animateToRemoveMainLayout(_ sender: UIButton) {
         UIView.animate(withDuration: 0.6, animations: {
-            self.mainLayout.transform = CGAffineTransform(scaleX: 2, y: 4)
-            self.mainLayout.alpha = 0
+            self.mainView.transform = CGAffineTransform(scaleX: 2, y: 4)
+            self.mainView.alpha = 0
         }, completion: { (isComplete) in
             self.resetRows()
             self.showMainLayout(sender)
@@ -53,9 +74,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func showMainLayout(_ sender: UIButton) {
         
-        self.mainLayout.transform = .identity
+        self.mainView.transform = .identity
         UIView.animate(withDuration: 0.2, animations: {
-            self.mainLayout.alpha = 1
+            self.mainView.alpha = 1
             self.setRows(sender)
         }, completion: nil)
     }
@@ -139,6 +160,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         // Set mainLayout to first button's layout
         showMainLayout(buttonLayout1)
+        
+        let swipeGestureRecognier = UISwipeGestureRecognizer(target: self, action: #selector(onSwipe(_:)))
+        swipeGestureRecognier.direction = .up
+        rootView.addGestureRecognizer(swipeGestureRecognier)
         
     }
     

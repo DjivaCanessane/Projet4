@@ -17,8 +17,6 @@
 		327BBBB8242DB65A00CA4F95 /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 327BBBB7242DB65A00CA4F95 /* Delm-Medium.otf */; };
 		327BBBBB242E7E3500CA4F95 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327BBBBA242E7E3500CA4F95 /* GridLayout.swift */; };
 		327BBBBD242E7E9D00CA4F95 /* PhotoTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327BBBBC242E7E9D00CA4F95 /* PhotoTile.swift */; };
-		327BBBC3242E7F9A00CA4F95 /* PhotoTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327BBBC2242E7F9A00CA4F95 /* PhotoTileView.swift */; };
-		327BBBC6242E8B7300CA4F95 /* PhotoTileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 327BBBC5242E8B7300CA4F95 /* PhotoTileView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +32,6 @@
 		327BBBB7242DB65A00CA4F95 /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Delm-Medium.otf"; sourceTree = "<group>"; };
 		327BBBBA242E7E3500CA4F95 /* GridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
 		327BBBBC242E7E9D00CA4F95 /* PhotoTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTile.swift; sourceTree = "<group>"; };
-		327BBBC2242E7F9A00CA4F95 /* PhotoTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTileView.swift; sourceTree = "<group>"; };
-		327BBBC5242E8B7300CA4F95 /* PhotoTileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoTileView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +84,6 @@
 		327BBBBE242E7EB300CA4F95 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				327BBBC4242E8B4300CA4F95 /* PhotoTile */,
 				327BBBA7242DB2F200CA4F95 /* Main.storyboard */,
 				327BBBAC242DB2F500CA4F95 /* LaunchScreen.storyboard */,
 			);
@@ -114,15 +109,6 @@
 				327BBBA3242DB2F200CA4F95 /* SceneDelegate.swift */,
 			);
 			path = SupportingFiles;
-			sourceTree = "<group>";
-		};
-		327BBBC4242E8B4300CA4F95 /* PhotoTile */ = {
-			isa = PBXGroup;
-			children = (
-				327BBBC2242E7F9A00CA4F95 /* PhotoTileView.swift */,
-				327BBBC5242E8B7300CA4F95 /* PhotoTileView.xib */,
-			);
-			path = PhotoTile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,7 +172,6 @@
 				327BBBAE242DB2F500CA4F95 /* LaunchScreen.storyboard in Resources */,
 				327BBBB8242DB65A00CA4F95 /* Delm-Medium.otf in Resources */,
 				327BBBAB242DB2F500CA4F95 /* Assets.xcassets in Resources */,
-				327BBBC6242E8B7300CA4F95 /* PhotoTileView.xib in Resources */,
 				327BBBB6242DB65100CA4F95 /* ThirstySoftRegular.otf in Resources */,
 				327BBBA9242DB2F200CA4F95 /* Main.storyboard in Resources */,
 			);
@@ -200,7 +185,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				327BBBA6242DB2F200CA4F95 /* ViewController.swift in Sources */,
-				327BBBC3242E7F9A00CA4F95 /* PhotoTileView.swift in Sources */,
 				327BBBA2242DB2F200CA4F95 /* AppDelegate.swift in Sources */,
 				327BBBBD242E7E9D00CA4F95 /* PhotoTile.swift in Sources */,
 				327BBBBB242E7E3500CA4F95 /* GridLayout.swift in Sources */,
