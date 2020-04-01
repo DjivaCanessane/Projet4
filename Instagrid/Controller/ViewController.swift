@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    var buttonBuffer: UIButton = UIButton()
 
     @IBOutlet weak var buttonLayout1: UIButton!
     @IBOutlet weak var buttonLayout2: UIButton!
@@ -85,7 +87,24 @@ class ViewController: UIViewController {
     }
     
     @objc func addPhotoFromLibrary(sender: UIButton) {
+        buttonBuffer = sender
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true, completion: nil)
+        imagePickerController.allowsEditing = true
+        imagePickerController.sourceType = .photoLibrary
         
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            buttonBuffer.setBackgroundImage(editedImage, for: .normal)
+        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            buttonBuffer.setBackgroundImage(originalImage, for: .normal)
+        }
+        dismiss(animated: true, completion: nil)
     }
     
     func makeAddButton(count: Int) ->[UIButton] {
