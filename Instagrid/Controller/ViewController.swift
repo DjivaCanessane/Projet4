@@ -31,13 +31,37 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             self.mainView.transform = CGAffineTransform(translationX: 0, y: -UIScreen.main.bounds.height)
         }, completion: { (isSwipped) in
             if isSwipped {
-                //TODO: partager
-                UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: [], animations: {
-                    self.mainView.transform = .identity
-                }, completion: nil)
+                self.share()
+                
             }
             
         })
+    }
+    
+    func image(with view: UIView) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.isOpaque, 0.0)
+        defer { UIGraphicsEndImageContext() }
+        if let context = UIGraphicsGetCurrentContext() {
+            view.layer.render(in: context)
+            let image = UIGraphicsGetImageFromCurrentImageContext()
+            return image
+        }
+        return nil
+    }
+    
+    func share() {
+        guard let image: UIImage = image(with: mainView) else { return }
+        let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: [])
+        
+        present(activityViewController, animated: true, completion: {
+            self.resetPositionMainView()
+        })
+    }
+    
+    func resetPositionMainView() {
+        UIView.animate(withDuration: 0.3, delay: 0, animations: {
+                self.mainView.transform = .identity
+            }, completion: nil)
     }
     
     @IBAction func buttonActionLayoutTapped(_ sender: UIButton) {
