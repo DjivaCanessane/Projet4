@@ -12,6 +12,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     var buttonBuffer: UIButton = UIButton()
 
+    @IBOutlet weak var swipeArrowImage: UIImageView!
+    @IBOutlet weak var swipeLabel: UILabel!
     @IBOutlet var rootView: UIView!
     @IBOutlet weak var buttonLayout1: UIButton!
     @IBOutlet weak var buttonLayout2: UIButton!
@@ -157,7 +159,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         for _ in 1...count {
             let button = UIButton()
             button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-            button.setBackgroundImage(UIImage(named: "Plus"), for: .normal)
+            button.setImage(UIImage(named: "Plus"), for: .normal)
             button.addTarget(self, action: #selector(addPhotoFromLibrary(sender:)), for: .touchUpInside)
             buttons.append(button)
         }
@@ -186,7 +188,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         showMainLayout(buttonLayout1)
         
         let swipeGestureRecognier = UISwipeGestureRecognizer(target: self, action: #selector(onSwipe(_:)))
-        swipeGestureRecognier.direction = .up
+        
+        var windowInterfaceOrientation: UIInterfaceOrientation? {
+            return UIApplication.shared.windows.first?.windowScene?.interfaceOrientation
+        }
+        guard let interfaceOrientation = windowInterfaceOrientation else { return }
+        if interfaceOrientation.isPortrait {
+            swipeGestureRecognier.direction = .up
+            swipeLabel.text = "Swipe up to share"
+            swipeArrowImage.image = UIImage(named: "Arrow Up")
+        } else {
+            swipeGestureRecognier.direction = .left
+            swipeLabel.text = "Swipe left to share"
+            swipeArrowImage.image = UIImage(named: "Arrow Left")
+        }
         rootView.addGestureRecognizer(swipeGestureRecognier)
         
     }
