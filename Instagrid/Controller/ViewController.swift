@@ -57,9 +57,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         guard let image: UIImage = image(with: mainView) else { return }
         let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: [])
         
-        present(activityViewController, animated: true, completion: {
+        present(activityViewController, animated: true, completion: nil)
+        activityViewController.completionWithItemsHandler = { (activity, success, items, error) in
             self.resetPositionMainView()
-        })
+        }
     }
     
     func resetPositionMainView() {
