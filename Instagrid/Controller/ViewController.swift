@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var buttonBuffer: UIButton = UIButton()
+    var swipeGestureRecognier: UISwipeGestureRecognizer!
+    var transformAnimation: CGAffineTransform?
 
     @IBOutlet weak var swipeArrowImage: UIImageView!
     @IBOutlet weak var swipeLabel: UILabel!
@@ -30,11 +32,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func animateMainView() {
         UIView.animate(withDuration: 0.5, animations: {
-            self.mainView.transform = CGAffineTransform(translationX: 0, y: -UIScreen.main.bounds.height)
+            guard let transformAnimation = self.transformAnimation else { return }
+            self.mainView.transform = transformAnimation
         }, completion: { (isSwipped) in
             if isSwipped {
                 self.share()
-                
             }
             
         })
@@ -138,7 +140,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
-        imagePickerController.allowsEditing = true
         imagePickerController.sourceType = .photoLibrary
         
         
@@ -146,10 +147,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            buttonBuffer.setBackgroundImage(editedImage, for: .normal)
-        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            buttonBuffer.setBackgroundImage(originalImage, for: .normal)
+        if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            buttonBuffer.setImage(originalImage, for: .normal)
+            buttonBuffer.imageView?.contentMode = .scaleAspectFill
         }
         dismiss(animated: true, completion: nil)
     }
@@ -178,6 +178,28 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    @objc func resetOrientation() {
+        var windowInterfaceOrientation: UIInterfaceOrientation? {
+            if #available(iOS 13.0, *) {
+                return UIApplication.shared.windows.first?.windowScene?.interfaceOrientation
+            } else {
+                return UIApplication.shared.statusBarOrientation
+            }
+        }
+        guard let interfaceOrientation = windowInterfaceOrientation else { return }
+        if interfaceOrientation.isPortrait {
+            swipeGestureRecognier.direction = .up
+            swipeLabel.text = "Swipe up to share"
+            swipeArrowImage.image = UIImage(named: "Arrow Up")
+            transformAnimation = CGAffineTransform(translationX: 0, y: -UIScreen.main.bounds.height)
+        } else {
+            swipeGestureRecognier.direction = .left
+            swipeLabel.text = "Swipe left to share"
+            swipeArrowImage.image = UIImage(named: "Arrow Left")
+            transformAnimation = CGAffineTransform(translationX: -UIScreen.main.bounds.width, y: 0)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -187,23 +209,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Set mainLayout to first button's layout
         showMainLayout(buttonLayout1)
         
-        let swipeGestureRecognier = UISwipeGestureRecognizer(target: self, action: #selector(onSwipe(_:)))
+        swipeGestureRecognier = UISwipeGestureRecognizer(target: self, action: #selector(onSwipe(_:)))
         
-        var windowInterfaceOrientation: UIInterfaceOrientation? {
-            return UIApplication.shared.windows.first?.windowScene?.interfaceOrientation
-        }
-        guard let interfaceOrientation = windowInterfaceOrientation else { return }
-        if interfaceOrientation.isPortrait {
-            swipeGestureRecognier.direction = .up
-            swipeLabel.text = "Swipe up to share"
-            swipeArrowImage.image = UIImage(named: "Arrow Up")
-        } else {
-            swipeGestureRecognier.direction = .left
-            swipeLabel.text = "Swipe left to share"
-            swipeArrowImage.image = UIImage(named: "Arrow Left")
-        }
+        
         rootView.addGestureRecognizer(swipeGestureRecognier)
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(resetOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
+
     }
     
     
