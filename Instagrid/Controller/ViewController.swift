@@ -78,13 +78,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     private func disableBackgroundImageBottomButtons() {
-        buttonLayout1.setBackgroundImage(nil, for: .normal)
-        buttonLayout2.setBackgroundImage(nil, for: .normal)
-        buttonLayout3.setBackgroundImage(nil, for: .normal)
+        buttonLayout1.setImage(.none, for: .normal)
+        buttonLayout2.setImage(.none, for: .normal)
+        buttonLayout3.setImage(.none, for: .normal)
     }
     
     private func updateBackgroundImageForButton(_ sender: UIButton) {
-        sender.setBackgroundImage(UIImage(named: "Selected"), for: .normal)
+        sender.setImage(UIImage(named: "Selected"), for: .normal)
     }
     
     private func updateMainLayout(_ sender: UIButton) {
@@ -206,7 +206,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         
         // Select initialy the first button
-        buttonLayout1.setBackgroundImage(UIImage(named: "Selected"), for: .normal)
+        buttonLayout1.setImage(UIImage(named: "Selected"), for: .normal)
         
         // Set mainLayout to first button's layout
         showMainLayout(buttonLayout1)
