@@ -21,6 +21,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var bottomRow: UIStackView!
     @IBOutlet weak var mainView: UIView!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Select initialy the first button
+        buttonLayout1.setImage(UIImage(named: "Selected"), for: .normal)
+        
+        // Set mainLayout to first button's layout
+        showMainLayout(buttonLayout1)
+        
+        swipeGestureRecognier = UISwipeGestureRecognizer(target: self, action: #selector(onSwipe(_:)))
+        
+        
+        rootView.addGestureRecognizer(swipeGestureRecognier)
+        NotificationCenter.default.addObserver(self, selector: #selector(resetOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
+
+    }
+    
     private var buttonBuffer: UIButton = UIButton()
     private var swipeGestureRecognier: UISwipeGestureRecognizer!
     private var transformAnimation: CGAffineTransform?
@@ -202,22 +219,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Select initialy the first button
-        buttonLayout1.setImage(UIImage(named: "Selected"), for: .normal)
-        
-        // Set mainLayout to first button's layout
-        showMainLayout(buttonLayout1)
-        
-        swipeGestureRecognier = UISwipeGestureRecognizer(target: self, action: #selector(onSwipe(_:)))
-        
-        
-        rootView.addGestureRecognizer(swipeGestureRecognier)
-        NotificationCenter.default.addObserver(self, selector: #selector(resetOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
-
-    }
+    
     
     
 }
