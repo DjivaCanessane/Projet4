@@ -10,9 +10,6 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    var buttonBuffer: UIButton = UIButton()
-    var swipeGestureRecognier: UISwipeGestureRecognizer!
-    var transformAnimation: CGAffineTransform?
 
     @IBOutlet weak var swipeArrowImage: UIImageView!
     @IBOutlet weak var swipeLabel: UILabel!
@@ -24,13 +21,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var bottomRow: UIStackView!
     @IBOutlet weak var mainView: UIView!
     
-    @objc func onSwipe(_ sender: UISwipeGestureRecognizer) {
+    private var buttonBuffer: UIButton = UIButton()
+    private var swipeGestureRecognier: UISwipeGestureRecognizer!
+    private var transformAnimation: CGAffineTransform?
+    
+    @objc private func onSwipe(_ sender: UISwipeGestureRecognizer) {
         if sender.state == .ended {
             animateMainView()
         }
     }
     
-    func animateMainView() {
+    private func animateMainView() {
         UIView.animate(withDuration: 0.5, animations: {
             guard let transformAnimation = self.transformAnimation else { return }
             self.mainView.transform = transformAnimation
@@ -42,7 +43,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         })
     }
     
-    func image(with view: UIView) -> UIImage? {
+    private func image(with view: UIView) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.isOpaque, 0.0)
         defer { UIGraphicsEndImageContext() }
         if let context = UIGraphicsGetCurrentContext() {
@@ -53,7 +54,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return nil
     }
     
-    func share() {
+    private func share() {
         guard let image: UIImage = image(with: mainView) else { return }
         let activityViewController = UIActivityViewController(activityItems: [image], applicationActivities: [])
         
@@ -63,34 +64,34 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    func resetPositionMainView() {
+    private func resetPositionMainView() {
         UIView.animate(withDuration: 0.3, delay: 0, animations: {
                 self.mainView.transform = .identity
             }, completion: nil)
     }
     
-    @IBAction func buttonActionLayoutTapped(_ sender: UIButton) {
+    @IBAction private func buttonActionLayoutTapped(_ sender: UIButton) {
         print(#function)
         disableBackgroundImageBottomButtons()
         updateBackgroundImageForButton(sender)
         updateMainLayout(sender)
     }
     
-    func disableBackgroundImageBottomButtons() {
+    private func disableBackgroundImageBottomButtons() {
         buttonLayout1.setBackgroundImage(nil, for: .normal)
         buttonLayout2.setBackgroundImage(nil, for: .normal)
         buttonLayout3.setBackgroundImage(nil, for: .normal)
     }
     
-    func updateBackgroundImageForButton(_ sender: UIButton) {
+    private func updateBackgroundImageForButton(_ sender: UIButton) {
         sender.setBackgroundImage(UIImage(named: "Selected"), for: .normal)
     }
     
-    func updateMainLayout(_ sender: UIButton) {
+    private func updateMainLayout(_ sender: UIButton) {
         animateToRemoveMainLayout(sender)
     }
     
-    func animateToRemoveMainLayout(_ sender: UIButton) {
+    private func animateToRemoveMainLayout(_ sender: UIButton) {
         UIView.animate(withDuration: 0.6, animations: {
             self.mainView.transform = CGAffineTransform(scaleX: 2, y: 4)
             self.mainView.alpha = 0
@@ -101,7 +102,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         })
     }
     
-    func showMainLayout(_ sender: UIButton) {
+    private func showMainLayout(_ sender: UIButton) {
         
         self.mainView.transform = .identity
         UIView.animate(withDuration: 0.2, animations: {
@@ -110,7 +111,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }, completion: nil)
     }
     
-    func setRows(_ sender: UIButton) {
+    private func setRows(_ sender: UIButton) {
         let buttons: [UIButton]
         if sender == buttonLayout1 {
             buttons = makeAddButton(count: 3)
@@ -136,7 +137,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    @objc func addPhotoFromLibrary(sender: UIButton) {
+    @objc private func addPhotoFromLibrary(sender: UIButton) {
         buttonBuffer = sender
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -155,7 +156,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismiss(animated: true, completion: nil)
     }
     
-    func makeAddButton(count: Int) ->[UIButton] {
+    private func makeAddButton(count: Int) -> [UIButton] {
         var buttons: [UIButton] = []
         for _ in 1...count {
             let button = UIButton()
@@ -167,7 +168,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return buttons
     }
     
-    func resetRows() {
+    private func resetRows() {
         
         for view in topRow.subviews {
             view.removeFromSuperview()
@@ -179,7 +180,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
-    @objc func resetOrientation() {
+    @objc private func resetOrientation() {
         var windowInterfaceOrientation: UIInterfaceOrientation? {
             if #available(iOS 13.0, *) {
                 return UIApplication.shared.windows.first?.windowScene?.interfaceOrientation
