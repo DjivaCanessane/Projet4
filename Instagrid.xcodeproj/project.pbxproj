@@ -15,8 +15,6 @@
 		327BBBAE242DB2F500CA4F95 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 327BBBAC242DB2F500CA4F95 /* LaunchScreen.storyboard */; };
 		327BBBB6242DB65100CA4F95 /* ThirstySoftRegular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 327BBBB5242DB65100CA4F95 /* ThirstySoftRegular.otf */; };
 		327BBBB8242DB65A00CA4F95 /* Delm-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 327BBBB7242DB65A00CA4F95 /* Delm-Medium.otf */; };
-		327BBBBB242E7E3500CA4F95 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327BBBBA242E7E3500CA4F95 /* GridLayout.swift */; };
-		327BBBBD242E7E9D00CA4F95 /* PhotoTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327BBBBC242E7E9D00CA4F95 /* PhotoTile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,8 +28,6 @@
 		327BBBAF242DB2F500CA4F95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		327BBBB5242DB65100CA4F95 /* ThirstySoftRegular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ThirstySoftRegular.otf; sourceTree = "<group>"; };
 		327BBBB7242DB65A00CA4F95 /* Delm-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Delm-Medium.otf"; sourceTree = "<group>"; };
-		327BBBBA242E7E3500CA4F95 /* GridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
-		327BBBBC242E7E9D00CA4F95 /* PhotoTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,18 +63,8 @@
 				327BBBC1242E7EF300CA4F95 /* SupportingFiles */,
 				327BBBBF242E7ECB00CA4F95 /* Controller */,
 				327BBBBE242E7EB300CA4F95 /* View */,
-				327BBBB9242E7E0F00CA4F95 /* Model */,
 			);
 			path = Instagrid;
-			sourceTree = "<group>";
-		};
-		327BBBB9242E7E0F00CA4F95 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				327BBBBA242E7E3500CA4F95 /* GridLayout.swift */,
-				327BBBBC242E7E9D00CA4F95 /* PhotoTile.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		327BBBBE242E7EB300CA4F95 /* View */ = {
@@ -186,8 +172,6 @@
 			files = (
 				327BBBA6242DB2F200CA4F95 /* ViewController.swift in Sources */,
 				327BBBA2242DB2F200CA4F95 /* AppDelegate.swift in Sources */,
-				327BBBBD242E7E9D00CA4F95 /* PhotoTile.swift in Sources */,
-				327BBBBB242E7E3500CA4F95 /* GridLayout.swift in Sources */,
 				327BBBA4242DB2F200CA4F95 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
