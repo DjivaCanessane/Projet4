@@ -73,6 +73,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     private func checkPresenceOfPicture() {
         if isMainViewContainingPicture {
+            // mainView contains at least one picture so user can share
             share()
         } else {
             showErrorDialog(title: "Aucune photo", message: "Veuillez ajoutez au moins une photo avant de partager.")
