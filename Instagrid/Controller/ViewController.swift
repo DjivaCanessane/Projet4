@@ -19,7 +19,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var topRow: UIStackView!
     @IBOutlet weak var bottomRow: UIStackView!
     @IBOutlet weak var mainView: UIView!
+
+    private var buttonBuffer: UIButton = UIButton()
+    private var swipeGestureRecognizer: UISwipeGestureRecognizer!
+    private var transformAnimation: CGAffineTransform?
+    private var imagePickerbuttons: [UIButton] = []
     
+    // Check if mainView contains at least one picture before sharing
+    var isMainViewContainingPicture: Bool {
+        var numberOfPicture: Int = 0
+        imagePickerbuttons.forEach { (button) in
+            if button.imageView?.image != UIImage(named: "Plus") {
+                numberOfPicture += 1
+            }
+        }
+        return numberOfPicture > 0 ? true : false
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,27 +52,40 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Add notification when device change orientation
         NotificationCenter.default.addObserver(self, selector: #selector(resetOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
-    
-    private var buttonBuffer: UIButton = UIButton()
-    private var swipeGestureRecognizer: UISwipeGestureRecognizer!
-    private var transformAnimation: CGAffineTransform?
-    
+
     // Called by swipeGestureRecognizer
     @objc private func onSwipe(_ sender: UISwipeGestureRecognizer) {
         if sender.state == .ended {
             animateMainView()
         }
     }
-    
+
     private func animateMainView() {
         UIView.animate(withDuration: 0.5, animations: {
             guard let transformAnimation = self.transformAnimation else { return }
             self.mainView.transform = transformAnimation
         }, completion: { (isSwipped) in
             if isSwipped {
-                self.share()
+                self.checkPresenceOfPicture()
             }
         })
+    }
+    
+    private func checkPresenceOfPicture() {
+        if isMainViewContainingPicture {
+            share()
+        } else {
+            showErrorDialog(title: "Aucune photo", message: "Veuillez ajoutez au moins une photo avant de partager.")
+        }
+    }
+    
+    func showErrorDialog(title: String, message: String) {
+        let alertVC =
+            UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+            self.resetPositionMainView()
+        }))
+        self.present(alertVC, animated: true, completion: nil)
     }
     
     // Converts UIView to UIImage
@@ -129,7 +158,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // add imagePickerButtons according to the selected buttonLayout
     private func setRows(_ sender: UIButton) {
-        let imagePickerbuttons: [UIButton]
         if sender == buttonLayout1 {
             imagePickerbuttons = makeImagePickerButton(count: 3)
             topRow.addArrangedSubview(imagePickerbuttons[0])
