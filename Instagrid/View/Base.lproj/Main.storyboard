@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -98,7 +98,6 @@
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8Ev-s2-ePb">
                                                 <rect key="frame" x="0.0" y="0.0" width="224" height="108"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="LHG-z5-ZwZ">
                                                 <rect key="frame" x="0.0" y="116" width="224" height="108"/>
@@ -153,6 +152,7 @@
                                 </variation>
                             </view>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" red="0.71769154069999996" green="0.84272629020000001" blue="0.89316302540000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="neX-v1-7Ud" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="6v0-Ng-QjR"/>
@@ -188,20 +188,19 @@
                             <constraint firstItem="hbX-ll-nm2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="z2a-3z-jcR"/>
                             <constraint firstItem="hbX-ll-nm2" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="z6m-s8-Lz7"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="f4e-l8-dUL"/>
+                                <exclude reference="BRd-V0-hbe"/>
+                                <exclude reference="Q2o-IF-jwQ"/>
+                                <exclude reference="a2E-hu-Xmk"/>
+                                <exclude reference="bAy-ao-67W"/>
                                 <exclude reference="CtO-0l-RBD"/>
                                 <exclude reference="Iwl-Wp-nCH"/>
                                 <exclude reference="d3a-II-qx1"/>
                                 <exclude reference="vBk-D5-ugh"/>
                                 <exclude reference="xjH-cf-W9k"/>
                                 <exclude reference="yb8-KI-Q50"/>
-                                <exclude reference="BRd-V0-hbe"/>
-                                <exclude reference="Q2o-IF-jwQ"/>
-                                <exclude reference="a2E-hu-Xmk"/>
-                                <exclude reference="bAy-ao-67W"/>
                                 <exclude reference="V55-XF-CgB"/>
                                 <exclude reference="YE7-8N-liE"/>
                                 <exclude reference="i6l-ST-7Tn"/>
@@ -213,6 +212,12 @@
                                 <exclude reference="R30-sr-yb0"/>
                                 <include reference="f4e-l8-dUL"/>
                                 <exclude reference="t9g-Nu-3XI"/>
+                                <exclude reference="8yo-cH-JsA"/>
+                                <include reference="BRd-V0-hbe"/>
+                                <include reference="Q2o-IF-jwQ"/>
+                                <include reference="a2E-hu-Xmk"/>
+                                <include reference="bAy-ao-67W"/>
+                                <exclude reference="rnB-94-sD4"/>
                                 <include reference="CtO-0l-RBD"/>
                                 <include reference="d3a-II-qx1"/>
                                 <exclude reference="vBk-D5-ugh"/>
@@ -220,12 +225,6 @@
                                 <include reference="yb8-KI-Q50"/>
                                 <exclude reference="z2a-3z-jcR"/>
                                 <exclude reference="z6m-s8-Lz7"/>
-                                <exclude reference="8yo-cH-JsA"/>
-                                <include reference="BRd-V0-hbe"/>
-                                <include reference="Q2o-IF-jwQ"/>
-                                <include reference="a2E-hu-Xmk"/>
-                                <include reference="bAy-ao-67W"/>
-                                <exclude reference="rnB-94-sD4"/>
                                 <exclude reference="Bjn-cV-rRX"/>
                                 <exclude reference="R02-Ye-z9L"/>
                                 <exclude reference="6v0-Ng-QjR"/>
